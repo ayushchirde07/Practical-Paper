@@ -1,20 +1,806 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Link</title>
-</head>
-<body>
-
-<a href="https://drive.google.com/file/d/1-SkMXRE80ByhYuQGL5Y2hP1jg5JxK142/view?usp=sharing"
+    <a href="https://drive.google.com/file/d/1-SkMXRE80ByhYuQGL5Y2hP1jg5JxK142/view?usp=sharing"
    target="_blank">
     Open PDF 1
 </a>
 <a href="https://drive.google.com/file/d/1mHkzCIpFva-DYby0S3F44adTyEyEXJsT/view?usp=sharing"
    target="_blank">
     Open PDF 2
-</a>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ DSA Programs — Study Notes</title>
+<style>
+  :root {
+    --bg: #f4f7fb; --surface: #ffffff; --text: #172033; --muted: #657089;
+    --border: #dce3ee; --accent: #4f46e5; --accent-soft: #eef2ff;
+    --code: #111827; --code-text: #e5e7eb; --green: #047857;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: linear-gradient(135deg, #171c35, #3730a3); color: white; padding: 42px 20px 34px; }
+  .hero, main { max-width: 1120px; margin: auto; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; font-weight: 800; color: #c7d2fe; }
+  h1 { margin: 8px 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+  header p { color: #e0e7ff; max-width: 720px; margin-bottom: 0; }
+  main { padding: 24px 18px 56px; }
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .toolbar input { flex: 1 1 240px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; background: var(--surface); color: var(--text); }
+  button, .nav a { cursor: pointer; border: 1px solid var(--border); border-radius: 9px; padding: 9px 12px; background: var(--surface); color: var(--text); font: inherit; text-decoration: none; }
+  button:hover, .nav a:hover { border-color: var(--accent); color: var(--accent); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 2px 1px 14px; margin-bottom: 8px; }
+  .nav a { white-space: nowrap; font-size: .88rem; }
+  .intro { padding: 16px 18px; border: 1px solid #c7d2fe; background: var(--accent-soft); border-radius: 12px; margin-bottom: 22px; }
+  .intro strong { color: #3730a3; }
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin: 18px 0; overflow: hidden; box-shadow: 0 4px 16px #17203308; }
+  .section-head { padding: 20px 22px 10px; display: flex; gap: 14px; justify-content: space-between; align-items: flex-start; }
+  .number { display: inline-grid; place-items: center; min-width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-weight: 800; }
+  h2 { margin: 0; font-size: 1.3rem; }
+  .description { margin: 4px 0 0; color: var(--muted); }
+  .section-body { padding: 8px 22px 22px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+  .pill { border-radius: 999px; padding: 5px 10px; background: #f1f5f9; color: #334155; font-size: .86rem; }
+  .pill b { color: #111827; }
+  .code-head { display: flex; justify-content: space-between; align-items: center; color: #cbd5e1; background: #1f2937; padding: 8px 12px; border-radius: 10px 10px 0 0; font-size: .85rem; }
+  pre { margin: 0; padding: 16px; overflow: auto; background: var(--code); color: var(--code-text); border-radius: 0 0 10px 10px; font: 13px/1.6 Consolas, Monaco, "Courier New", monospace; tab-size: 4; }
+  .output { margin-top: 14px; }
+  .output h3 { margin: 0 0 6px; font-size: .98rem; }
+  .output pre { background: #f8fafc; color: #0f172a; border: 1px solid var(--border); border-radius: 9px; }
+  .complexity { margin-top: 18px; }
+  .complexity h3 { margin: 0 0 8px; font-size: 1rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+  th, td { padding: 10px 12px; border: 1px solid var(--border); text-align: left; }
+  th { background: #f8fafc; }
+  .table-wrap { overflow-x: auto; border-radius: 10px; }
+  .notes { color: var(--muted); font-size: .9rem; }
+  footer { text-align: center; color: var(--muted); padding: 24px 12px; }
+  .hidden { display: none !important; }
+  @media (max-width: 640px) {
+    header { padding: 30px 18px; }
+    .section-head { padding: 16px 15px 8px; }
+    .section-body { padding: 8px 15px 18px; }
+    pre { font-size: 12px; }
+    th, td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="eyebrow">Data Structures & Algorithms</div>
+    <h1>C++ DSA Programs</h1>
+    <p>12 exam-friendly programs with explanations, sample outputs, and time and space complexity.</p>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search a topic (e.g. stack, sort, Dijkstra)…" aria-label="Search programs">
+    <button id="expandAll" type="button">Expand all</button>
+    <button id="collapseAll" type="button">Collapse all</button>
+    <button id="printPage" type="button">Print / Save PDF</button>
+  </div>
+
+  <nav class="nav" aria-label="Program navigation">
+    <a href="#linear">Linear Search</a><a href="#binary">Binary Search</a><a href="#bubble">Bubble Sort</a>
+    <a href="#selection">Selection Sort</a><a href="#merge">Merge Sort</a><a href="#heap">Heap Sort</a>
+    <a href="#linked-list">Linked List</a><a href="#infix">Infix to Postfix</a><a href="#factorial">Factorial</a>
+    <a href="#stack">Stack</a><a href="#bst">BST</a><a href="#dijkstra">Dijkstra</a><a href="#complexity">Complexity Table</a>
+  </nav>
+
+  <div class="intro"><strong>How to use:</strong> Each program is standalone. Copy one program into a C++ file (for example, <code>main.cpp</code>) and compile it. Use the Copy code button to copy a program.</div>
+
+  <div id="programs">
+    <section class="section" id="linear" data-search="linear search array find element">
+      <div class="section-head"><span class="number">1</span><div style="flex:1"><h2>Linear Search</h2><p class="description">Checks each element one by one until the target is found.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> Best O(1), worst O(n)</span><span class="pill"><b>Auxiliary space:</b> O(1)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[] = {10, 20, 30, 40, 50};
+    int n = 5, key = 30;
+
+    for (int i = 0; i &lt; n; i++) {
+        if (a[i] == key) {
+            cout &lt;&lt; "Element found at position " &lt;&lt; i + 1;
+            return 0;
+        }
+    }
+
+    cout &lt;&lt; "Element not found";
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>Element found at position 3</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="binary" data-search="binary search sorted array">
+      <div class="section-head"><span class="number">2</span><div style="flex:1"><h2>Binary Search</h2><p class="description">Searches a sorted array by repeatedly halving the search range.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(log n)</span><span class="pill"><b>Auxiliary space:</b> O(1)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[] = {10, 20, 30, 40, 50};
+    int n = 5, key = 40;
+    int low = 0, high = n - 1;
+
+    while (low &lt;= high) {
+        int mid = low + (high - low) / 2;
+
+        if (a[mid] == key) {
+            cout &lt;&lt; "Element found at position " &lt;&lt; mid + 1;
+            return 0;
+        } else if (a[mid] &lt; key) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    cout &lt;&lt; "Element not found";
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>Element found at position 4</pre></div>
+        <p class="notes">Important: Binary Search requires the array to be sorted.</p>
+      </div>
+    </section>
+
+    <section class="section" id="bubble" data-search="bubble sort adjacent swap">
+      <div class="section-head"><span class="number">3</span><div style="flex:1"><h2>Bubble Sort</h2><p class="description">Compares adjacent elements and swaps them when they are in the wrong order.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n²) for this version</span><span class="pill"><b>Auxiliary space:</b> O(1)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[] = {5, 3, 8, 1, 2};
+    int n = 5;
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        for (int j = 0; j &lt; n - i - 1; j++) {
+            if (a[j] &gt; a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>1 2 3 5 8</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="selection" data-search="selection sort minimum">
+      <div class="section-head"><span class="number">4</span><div style="flex:1"><h2>Selection Sort</h2><p class="description">Selects the smallest element from the unsorted part and places it next.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n²)</span><span class="pill"><b>Auxiliary space:</b> O(1)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[] = {5, 3, 8, 1, 2};
+    int n = 5;
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        int minIndex = i;
+
+        for (int j = i + 1; j &lt; n; j++) {
+            if (a[j] &lt; a[minIndex])
+                minIndex = j;
+        }
+
+        int temp = a[i];
+        a[i] = a[minIndex];
+        a[minIndex] = temp;
+    }
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>1 2 3 5 8</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="merge" data-search="merge sort divide conquer">
+      <div class="section-head"><span class="number">5</span><div style="flex:1"><h2>Merge Sort</h2><p class="description">Divides the array, sorts each half, then merges the halves.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n log n)</span><span class="pill"><b>Auxiliary space:</b> O(n)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void merge(int a[], int l, int m, int r) {
+    int temp[100];
+    int i = l, j = m + 1, k = 0;
+
+    while (i &lt;= m &amp;&amp; j &lt;= r) {
+        if (a[i] &lt;= a[j])
+            temp[k++] = a[i++];
+        else
+            temp[k++] = a[j++];
+    }
+
+    while (i &lt;= m) temp[k++] = a[i++];
+    while (j &lt;= r) temp[k++] = a[j++];
+
+    for (i = l, k = 0; i &lt;= r; i++, k++)
+        a[i] = temp[k];
+}
+
+void mergeSort(int a[], int l, int r) {
+    if (l &lt; r) {
+        int m = l + (r - l) / 2;
+        mergeSort(a, l, m);
+        mergeSort(a, m + 1, r);
+        merge(a, l, m, r);
+    }
+}
+
+int main() {
+    int a[] = {9, 4, 7, 2, 6, 1};
+    int n = 6;
+
+    mergeSort(a, 0, n - 1);
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>1 2 4 6 7 9</pre></div>
+        <p class="notes">This teaching version uses a temporary array of size 100, so keep the input size within that limit.</p>
+      </div>
+    </section>
+
+    <section class="section" id="heap" data-search="heap sort max heap">
+      <div class="section-head"><span class="number">6</span><div style="flex:1"><h2>Heap Sort</h2><p class="description">Builds a Max Heap and repeatedly moves the maximum element to the end.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n log n)</span><span class="pill"><b>Auxiliary space:</b> O(log n) recursion stack in this implementation</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+void heapify(int a[], int n, int i) {
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l &lt; n &amp;&amp; a[l] &gt; a[largest])
+        largest = l;
+    if (r &lt; n &amp;&amp; a[r] &gt; a[largest])
+        largest = r;
+
+    if (largest != i) {
+        swap(a[i], a[largest]);
+        heapify(a, n, largest);
+    }
+}
+
+void heapSort(int a[], int n) {
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+        heapify(a, n, i);
+
+    for (int i = n - 1; i &gt; 0; i--) {
+        swap(a[0], a[i]);
+        heapify(a, i, 0);
+    }
+}
+
+int main() {
+    int a[] = {4, 10, 3, 5, 1};
+    int n = 5;
+
+    heapSort(a, n);
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>1 3 4 5 10</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="linked-list" data-search="singly linked list node insert display">
+      <div class="section-head"><span class="number">7</span><div style="flex:1"><h2>Singly Linked List</h2><p class="description">Creates nodes, inserts at the end, and displays the list.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Insert at end:</b> O(n) per insertion</span><span class="pill"><b>Space:</b> O(n) for nodes</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* head = nullptr;
+
+void insert(int value) {
+    Node* newNode = new Node{value, nullptr};
+
+    if (head == nullptr) {
+        head = newNode;
+        return;
+    }
+
+    Node* temp = head;
+    while (temp-&gt;next != nullptr)
+        temp = temp-&gt;next;
+
+    temp-&gt;next = newNode;
+}
+
+void display() {
+    Node* temp = head;
+
+    while (temp != nullptr) {
+        cout &lt;&lt; temp-&gt;data &lt;&lt; " -&gt; ";
+        temp = temp-&gt;next;
+    }
+
+    cout &lt;&lt; "NULL";
+}
+
+int main() {
+    insert(10);
+    insert(20);
+    insert(30);
+
+    display();
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>10 -&gt; 20 -&gt; 30 -&gt; NULL</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="infix" data-search="infix postfix stack expression conversion">
+      <div class="section-head"><span class="number">8</span><div style="flex:1"><h2>Infix to Postfix Using Stack</h2><p class="description">Uses operator precedence and a stack to convert an expression.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n)</span><span class="pill"><b>Space:</b> O(n)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+int precedence(char op) {
+    if (op == '^') return 3;
+    if (op == '*' || op == '/') return 2;
+    if (op == '+' || op == '-') return 1;
+    return 0;
+}
+
+int main() {
+    string infix, postfix = "";
+    stack&lt;char&gt; st;
+
+    cout &lt;&lt; "Enter infix expression: ";
+    cin &gt;&gt; infix;
+
+    for (char c : infix) {
+        if (isalnum(static_cast&lt;unsigned char&gt;(c))) {
+            postfix += c;
+        } else if (c == '(') {
+            st.push(c);
+        } else if (c == ')') {
+            while (!st.empty() &amp;&amp; st.top() != '(') {
+                postfix += st.top();
+                st.pop();
+            }
+            if (!st.empty()) st.pop();
+        } else {
+            while (!st.empty() &amp;&amp; st.top() != '(' &amp;&amp;
+                   (precedence(st.top()) &gt; precedence(c) ||
+                   (precedence(st.top()) == precedence(c) &amp;&amp; c != '^'))) {
+                postfix += st.top();
+                st.pop();
+            }
+            st.push(c);
+        }
+    }
+
+    while (!st.empty()) {
+        postfix += st.top();
+        st.pop();
+    }
+
+    cout &lt;&lt; "Postfix: " &lt;&lt; postfix;
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample input and output</h3><pre>Enter infix expression: A+B*C
+Postfix: ABC*+</pre></div>
+        <p class="notes">This simple version supports single-character operands and expressions without spaces.</p>
+      </div>
+    </section>
+
+    <section class="section" id="factorial" data-search="factorial recursion recursive function">
+      <div class="section-head"><span class="number">9</span><div style="flex:1"><h2>Factorial Using Recursion</h2><p class="description">The function calls itself until it reaches the base case.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(n)</span><span class="pill"><b>Auxiliary space:</b> O(n)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int factorial(int n) {
+    if (n &lt;= 1)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+
+    if (n &lt; 0) {
+        cout &lt;&lt; "Factorial is not defined for negative numbers";
+    } else if (n &gt; 12) {
+        cout &lt;&lt; "Number too large for this program";
+    } else {
+        cout &lt;&lt; "Factorial = " &lt;&lt; factorial(n);
+    }
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample input and output</h3><pre>Enter a number: 5
+Factorial = 120</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="stack" data-search="stack array push pop display lifo">
+      <div class="section-head"><span class="number">10</span><div style="flex:1"><h2>Stack Using Array</h2><p class="description">Implements Push, Pop, and Display operations. Stack follows LIFO.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Push / Pop:</b> O(1)</span><span class="pill"><b>Storage:</b> O(n)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+const int SIZE = 5;
+int st[SIZE];
+int top = -1;
+
+void push(int x) {
+    if (top == SIZE - 1)
+        cout &lt;&lt; "Stack Overflow\n";
+    else {
+        st[++top] = x;
+        cout &lt;&lt; "Element pushed\n";
+    }
+}
+
+void pop() {
+    if (top == -1)
+        cout &lt;&lt; "Stack Underflow\n";
+    else
+        cout &lt;&lt; "Popped: " &lt;&lt; st[top--] &lt;&lt; "\n";
+}
+
+void display() {
+    if (top == -1) {
+        cout &lt;&lt; "Stack is empty\n";
+        return;
+    }
+
+    for (int i = top; i &gt;= 0; i--)
+        cout &lt;&lt; st[i] &lt;&lt; " ";
+    cout &lt;&lt; "\n";
+}
+
+int main() {
+    int choice, value;
+
+    do {
+        cout &lt;&lt; "\n1.Push  2.Pop  3.Display  4.Exit\n";
+        cout &lt;&lt; "Enter choice: ";
+        cin &gt;&gt; choice;
+
+        switch (choice) {
+            case 1:
+                cout &lt;&lt; "Enter value: ";
+                cin &gt;&gt; value;
+                push(value);
+                break;
+            case 2: pop(); break;
+            case 3: display(); break;
+            case 4: cout &lt;&lt; "Exiting\n"; break;
+            default: cout &lt;&lt; "Invalid choice\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Example</h3><pre>Push 10
+Push 20
+Display: 20 10</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="bst" data-search="binary search tree bst insertion deletion search inorder">
+      <div class="section-head"><span class="number">11</span><div style="flex:1"><h2>Binary Search Tree (BST)</h2><p class="description">Implements insertion, searching, deletion, and inorder traversal.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Average operation time:</b> O(log n)</span><span class="pill"><b>Worst case:</b> O(n)</span><span class="pill"><b>Storage:</b> O(n)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node *left, *right;
+
+    Node(int value) {
+        data = value;
+        left = right = nullptr;
+    }
+};
+
+Node* insert(Node* root, int x) {
+    if (root == nullptr)
+        return new Node(x);
+
+    if (x &lt; root-&gt;data)
+        root-&gt;left = insert(root-&gt;left, x);
+    else if (x &gt; root-&gt;data)
+        root-&gt;right = insert(root-&gt;right, x);
+
+    return root;
+}
+
+bool search(Node* root, int x) {
+    if (root == nullptr) return false;
+    if (root-&gt;data == x) return true;
+    if (x &lt; root-&gt;data) return search(root-&gt;left, x);
+    return search(root-&gt;right, x);
+}
+
+Node* minNode(Node* root) {
+    while (root &amp;&amp; root-&gt;left)
+        root = root-&gt;left;
+    return root;
+}
+
+Node* deleteNode(Node* root, int x) {
+    if (root == nullptr) return nullptr;
+
+    if (x &lt; root-&gt;data)
+        root-&gt;left = deleteNode(root-&gt;left, x);
+    else if (x &gt; root-&gt;data)
+        root-&gt;right = deleteNode(root-&gt;right, x);
+    else {
+        if (root-&gt;left == nullptr) {
+            Node* temp = root-&gt;right;
+            delete root;
+            return temp;
+        }
+        if (root-&gt;right == nullptr) {
+            Node* temp = root-&gt;left;
+            delete root;
+            return temp;
+        }
+
+        Node* temp = minNode(root-&gt;right);
+        root-&gt;data = temp-&gt;data;
+        root-&gt;right = deleteNode(root-&gt;right, temp-&gt;data);
+    }
+
+    return root;
+}
+
+void inorder(Node* root) {
+    if (root) {
+        inorder(root-&gt;left);
+        cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+        inorder(root-&gt;right);
+    }
+}
+
+int main() {
+    Node* root = nullptr;
+    root = insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 70);
+    root = insert(root, 20);
+    root = insert(root, 40);
+
+    cout &lt;&lt; "BST: ";
+    inorder(root);
+
+    cout &lt;&lt; "\nSearch 40: "
+         &lt;&lt; (search(root, 40) ? "Found" : "Not Found");
+
+    root = deleteNode(root, 30);
+    cout &lt;&lt; "\nAfter deletion: ";
+    inorder(root);
+
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>BST: 20 30 40 50 70
+Search 40: Found
+After deletion: 20 40 50 70</pre></div>
+        <p class="notes">Duplicate values are ignored in this implementation. Inorder traversal displays the keys in ascending order.</p>
+      </div>
+    </section>
+
+    <section class="section" id="dijkstra" data-search="dijkstra shortest path weighted graph source vertex">
+      <div class="section-head"><span class="number">12</span><div style="flex:1"><h2>Dijkstra's Shortest Path Algorithm</h2><p class="description">Finds shortest distances from one source vertex to all other vertices in a graph with non-negative edge weights.</p></div></div>
+      <div class="section-body">
+        <div class="meta"><span class="pill"><b>Time:</b> O(V²)</span><span class="pill"><b>Auxiliary space:</b> O(V)</span><span class="pill"><b>Graph matrix storage:</b> O(V²)</span></div>
+        <div class="code-head"><span>C++ source code</span><button class="copy">Copy code</button></div>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+const int V = 5;
+
+int minDistance(int dist[], bool visited[]) {
+    int minValue = INT_MAX, index = -1;
+
+    for (int i = 0; i &lt; V; i++) {
+        if (!visited[i] &amp;&amp; dist[i] &lt; minValue) {
+            minValue = dist[i];
+            index = i;
+        }
+    }
+
+    return index;
+}
+
+void dijkstra(int graph[V][V], int src) {
+    int dist[V];
+    bool visited[V] = {false};
+
+    for (int i = 0; i &lt; V; i++)
+        dist[i] = INT_MAX;
+
+    dist[src] = 0;
+
+    for (int count = 0; count &lt; V; count++) {
+        int u = minDistance(dist, visited);
+        if (u == -1) break;
+
+        visited[u] = true;
+
+        for (int v = 0; v &lt; V; v++) {
+            if (!visited[v] &amp;&amp; graph[u][v] &gt; 0 &amp;&amp;
+                dist[u] != INT_MAX &amp;&amp;
+                dist[u] + graph[u][v] &lt; dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+            }
+        }
+    }
+
+    cout &lt;&lt; "Vertex  Distance from source\n";
+    for (int i = 0; i &lt; V; i++) {
+        cout &lt;&lt; i &lt;&lt; "       ";
+        if (dist[i] == INT_MAX)
+            cout &lt;&lt; "INF";
+        else
+            cout &lt;&lt; dist[i];
+        cout &lt;&lt; "\n";
+    }
+}
+
+int main() {
+    int graph[V][V] = {
+        {0, 10, 0, 0, 5},
+        {10, 0, 1, 0, 2},
+        {0, 1, 0, 4, 0},
+        {0, 0, 4, 0, 3},
+        {5, 2, 0, 3, 0}
+    };
+
+    dijkstra(graph, 0);
+    return 0;
+}</code></pre>
+        <div class="output"><h3>Sample output</h3><pre>Vertex  Distance from source
+0       0
+1       7
+2       8
+3       8
+4       5</pre></div>
+        <p class="notes">Vertex 0 is the source. This adjacency-matrix version uses 0 to mean “no edge,” so it does not represent zero-weight edges between distinct vertices.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" id="complexity">
+    <div class="section-head"><span class="number">✓</span><div style="flex:1"><h2>Quick Complexity Revision</h2><p class="description">Complexities for the implementations shown on this page.</p></div></div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Program / operation</th><th>Time complexity</th><th>Space complexity</th></tr></thead>
+          <tbody>
+            <tr><td>Linear Search</td><td>O(n) worst case</td><td>O(1) auxiliary</td></tr>
+            <tr><td>Binary Search (iterative)</td><td>O(log n)</td><td>O(1) auxiliary</td></tr>
+            <tr><td>Bubble Sort</td><td>O(n²)</td><td>O(1) auxiliary</td></tr>
+            <tr><td>Selection Sort</td><td>O(n²)</td><td>O(1) auxiliary</td></tr>
+            <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n) auxiliary</td></tr>
+            <tr><td>Heap Sort</td><td>O(n log n)</td><td>O(log n) recursion stack here; O(1) for iterative heapify</td></tr>
+            <tr><td>Singly Linked List</td><td>Display O(n); insert-at-end O(n) each</td><td>O(n) for nodes</td></tr>
+            <tr><td>Infix to Postfix</td><td>O(n)</td><td>O(n)</td></tr>
+            <tr><td>Recursive Factorial</td><td>O(n)</td><td>O(n) call stack</td></tr>
+            <tr><td>Stack push / pop</td><td>O(1) each</td><td>O(n) for stack capacity</td></tr>
+            <tr><td>BST search / insert / delete</td><td>Average O(log n); worst O(n)</td><td>O(n) total nodes; recursion can use O(n)</td></tr>
+            <tr><td>Dijkstra (adjacency matrix)</td><td>O(V²)</td><td>O(V) auxiliary; O(V²) including matrix</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="notes"><b>Definitions:</b> Time complexity describes how running time grows with input size. Auxiliary space describes extra working memory, excluding the input itself. Here, n is the number of elements and V is the number of graph vertices.</p>
+    </div>
+  </section>
+  <footer>Made for C++ Data Structures & Algorithms revision.</footer>
+</main>
+<script>
+  const search = document.getElementById('search');
+  const sections = [...document.querySelectorAll('#programs .section')];
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    sections.forEach(section => {
+      section.classList.toggle('hidden', q && !(section.innerText + ' ' + section.dataset.search).toLowerCase().includes(q));
+    });
+  });
+  document.querySelectorAll('.copy').forEach(button => {
+    button.addEventListener('click', async () => {
+      const code = button.closest('.section-body').querySelector('pre code').innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        button.textContent = 'Copied!';
+        setTimeout(() => button.textContent = 'Copy code', 1400);
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = code;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        button.textContent = 'Copied!';
+        setTimeout(() => button.textContent = 'Copy code', 1400);
+      }
+    });
+  });
+  document.getElementById('expandAll').addEventListener('click', () => {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('hidden'));
+    search.value = '';
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    document.querySelectorAll('#programs .section-body').forEach(b => b.classList.add('hidden'));
+  });
+  document.getElementById('expandAll').addEventListener('click', () => {
+    document.querySelectorAll('#programs .section-body').forEach(b => b.classList.remove('hidden'));
+  });
+  document.getElementById('printPage').addEventListener('click', () => window.print());
+</script>
+<style>
+  @media print {
+    header { background: #fff !important; color: #111 !important; padding: 20px 0; }
+    header p, .eyebrow { color: #333 !important; }
+    .toolbar, .nav, .copy { display: none !important; }
+    body { background: #fff; }
+    main { max-width: none; padding: 0; }
+    .section { box-shadow: none; break-inside: avoid; }
+    .section-body.hidden { display: block !important; }
+    pre { white-space: pre-wrap; }
+  }
+</style>
 </body>
 </html>
